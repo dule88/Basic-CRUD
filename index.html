@@ -9,33 +9,34 @@
   </head>
   <body>
     
-  <div class="input-group container">
-  <span class="input-group-text">First and last name</span>
+  <div class="input-group">
+  <span class="input-group-text">First name</span>
   <input type="text" aria-label="firstName" class="form-control inputName">
-  <input type="text" aria-label="lastName" class="form-control inputLastName">
   <span class="input-group-text">Years</span>
   <input type="number" aria-label="years" class="form-control inputAge">
   <button class="btn btn-dark button1">ADD</button>
+  <button class="btn btn-warning buttonUpdate mx-1" hidden>Update</button>
+  <button class="btn btn-danger buttonDelete" hidden>X</button>
+  
   </div>
 
-  <div class="container ">
-    <table class="table table-dark table-striped table-hover mt-5">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Years</th>
-          <th scope="col">Change</th>
-          <th scope="col">Delete</th>
-          
-        </tr>
-      </thead>
-      <tbody class='table1'>
 
-      </tbody>
-    </table>
-  </div>
+  <table class="table table-dark table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Years</th>
+        <th scope="col">Change</th>
+        <th scope="col">Delete</th>
+        
+      </tr>
+    </thead>
+    <tbody class='table1'>
+
+    </tbody>
+  </table>
+
 
   
     <script src="script.js"></script>
