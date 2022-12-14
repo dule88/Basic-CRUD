@@ -1,21 +1,22 @@
 const nameElement = document.querySelector(".inputName");
-const lastName1Element = document.querySelector(".inputLastName");
 const years1Element = document.querySelector(".inputAge");
 const buttonElement = document.querySelector(".button1");
 const tableElement = document.querySelector(".table1");
+const buttonUpdateElement = document.querySelector(".buttonUpdate");
+const buttonDeleteElement = document.querySelector(".buttonDelete")
 
+
+let editIdx = null;
 
 
 
 const persons = [
   {
     firstName: 'Dusan',
-    lastName: 'Dimitrijevic',
     age: 34
   },
   {
     firstName: 'Aleksandar',
-    lastName: 'Rasic',
     age: 34
   },
   
@@ -36,14 +37,29 @@ buttonElement.addEventListener("click", () => {
   
   read();
   
+ });
+
+
+//Back of X button to get back to the table
+buttonDeleteElement.addEventListener('click', () => {
+	
+  getBack();
+
+});
+
+
+//Updateing elements if needed to be changed info in the table
+buttonUpdateElement.addEventListener('click', () => {
+	
+  persons[editIdx].firstName = nameElement.value;
+  persons[editIdx].age = years1Element.value;
   
-  });
+ 	getBack();
+  
+  read();
+  
 
-
-
-
-
-
+});
 
 
 //function that iterates elements of table 
@@ -55,29 +71,28 @@ const read = () => {
     <tr>
       <th scope="row">${idx + 1}</th>
       <td>${person.firstName}</td>
-      <td>${person.lastName}</td>
       <td>${person.age}</td>
-      <td><button class='btn btn-warning change'>Change</button></td>
+      <td><button class='btn btn-warning change' onClick="changeElement(${idx})">Change</button></td>
       <td><button class='btn btn-danger delete' onClick="deleteElement(${idx})">Delete</button></td>
     </tr>
   `)
 
 }
+
+
 //function that adds elements of table 
 const addElements = () => {
 		
-    if(nameElement.value != '' &&  lastName1Element.value != '' && years1Element.value > 0 && years1Element.value !=''){
+    if(nameElement.value != '' && years1Element.value > 0 && years1Element.value !=''){
   
     persons.push({
 
       firstName: nameElement.value,
-      lastName: lastName1Element.value,
       age: years1Element.value
 
     });
 
     nameElement.value = '';
-    lastName1Element.value = '';
     years1Element.value = '';
   
   }
@@ -85,13 +100,48 @@ const addElements = () => {
   nameElement.focus();
 
 }
+
+
 //function that delete elements of table 
 const deleteElement = (idx) => {
 	persons.splice(idx, 1);
   read();
-	
   
 }
+
+
+//function that change elements of table 
+const changeElement = (idx) => {
+
+	nameElement.value = persons[idx].firstName;
+  years1Element.value = persons[idx].age;
+  
+  buttonElement.hidden = true;
+  
+  buttonUpdateElement.hidden = false;
+  buttonDeleteElement.hidden = false;
+  
+  editIdx = idx;
+  
+}
+
+
+//Function that get you back from changing element without changing anything
+const getBack = () => {
+
+	buttonElement.hidden = false;
+  buttonUpdateElement.hidden = true;
+  buttonDeleteElement.hidden = true;
+	
+  nameElement.value = '';
+  years1Element.value = '';
+  
+  nameElement.focus();
+  
+  editIdx = null;
+
+}
+
 
 
 
