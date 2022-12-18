@@ -1,8 +1,8 @@
 //BASIC CRUD APPLICATION
 
-Table where you can update your name and years and also can change the data.
+Table where you can update your name and years and also can change the data in table.
 
-Two names are predifined in array in order not to be empty table.
+Two names are predefined in array in order not to be empty table.
 
 Modal is added and it is responsive.
 
