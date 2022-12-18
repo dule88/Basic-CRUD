@@ -3,7 +3,8 @@ const years1Element = document.querySelector(".inputAge");
 const buttonElement = document.querySelector(".button1");
 const tableElement = document.querySelector(".table1");
 const buttonUpdateElement = document.querySelector(".buttonUpdate");
-const buttonDeleteElement = document.querySelector(".buttonDelete")
+const buttonDeleteElement = document.querySelector(".buttonDelete");
+
 
 
 let editIdx = null;
@@ -32,8 +33,10 @@ window.addEventListener("load", () => {
 
 //Adding new elements in the tablew
 buttonElement.addEventListener("click", () => {
-
+	
+  
   addElements();
+  
   
   read();
   
@@ -44,6 +47,7 @@ buttonElement.addEventListener("click", () => {
 buttonDeleteElement.addEventListener('click', () => {
 	
   getBack();
+ 
 
 });
 
@@ -51,15 +55,21 @@ buttonDeleteElement.addEventListener('click', () => {
 //Updateing elements if needed to be changed info in the table
 buttonUpdateElement.addEventListener('click', () => {
 	
-  persons[editIdx].firstName = nameElement.value;
-  persons[editIdx].age = years1Element.value;
+  if(nameElement.value != '' && years1Element.value > 0 && years1Element.value < 108 && years1Element.value !=''){
+  	persons[editIdx].firstName = nameElement.value;
+  	persons[editIdx].age = years1Element.value;
+  	
+    
+  }
+ 	 getBack();
   
- 	getBack();
-  
-  read();
+ 		read();
+ 	
   
 
 });
+
+
 
 
 //function that iterates elements of table 
@@ -72,7 +82,7 @@ const read = () => {
       <th scope="row">${idx + 1}</th>
       <td>${person.firstName}</td>
       <td>${person.age}</td>
-      <td><button class='btn btn-warning change' onClick="changeElement(${idx})">Change</button></td>
+      <td><button class='btn btn-warning change' onClick="changeElement(${idx})" data-bs-toggle="modal" data-bs-target="#addModal">Change</button></td>
       <td><button class='btn btn-danger delete' onClick="deleteElement(${idx})">Delete</button></td>
     </tr>
   `)
@@ -83,7 +93,7 @@ const read = () => {
 //function that adds elements of table 
 const addElements = () => {
 		
-    if(nameElement.value != '' && years1Element.value > 0 && years1Element.value !=''){
+    if(nameElement.value != '' && years1Element.value > 0 && years1Element.value < 108 && years1Element.value !=''){
   
     persons.push({
 
@@ -112,16 +122,21 @@ const deleteElement = (idx) => {
 
 //function that change elements of table 
 const changeElement = (idx) => {
+    	nameElement.value = persons[idx].firstName;
+      years1Element.value = persons[idx].age;
 
-	nameElement.value = persons[idx].firstName;
-  years1Element.value = persons[idx].age;
+      buttonElement.hidden = true;
+
+
+      buttonUpdateElement.hidden = false;
+      buttonDeleteElement.hidden = false;
+    
+		
+  	
+
+    editIdx = idx;
   
-  buttonElement.hidden = true;
-  
-  buttonUpdateElement.hidden = false;
-  buttonDeleteElement.hidden = false;
-  
-  editIdx = idx;
+	
   
 }
 
@@ -131,7 +146,7 @@ const getBack = () => {
 
 	buttonElement.hidden = false;
   buttonUpdateElement.hidden = true;
-  buttonDeleteElement.hidden = true;
+  buttonDeleteElement.hidden = false;
 	
   nameElement.value = '';
   years1Element.value = '';
