@@ -1,10 +1,8 @@
 //BASIC CRUD APPLICATION
 
-NOT YET FINISHED, PRACTICING JavaSript, still some features need to be added.
+Table where you can update your name and years and also can change the data.
 
-ON WINDOW LOAD LIST CAN BE READ, ON BUTTON CLICK NEW PERSONS CAN BE ADDED AND ON DELETE BUTTON RECORD CAN BE DELETED.
+Two names are predifined in array in order not to be empty table.
 
-// STILL TO BE FINISHED:
-				1. TO CHANGE A RECORD. - this is DONE
-2. TO CREATE MODAL(BOOTSTRAP)
-3. TO FIX RESPONSIVE. IT IS BREAKING(NOT LOOKING AS A GOOD UI PRACTICE), BELLOW 500px.- 
+Modal is added and it is responsive.
+
